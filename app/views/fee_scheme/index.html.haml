@@ -1,0 +1,9 @@
+
+%h1 LAA Fee Calculator User Interface
+
+%br/
+
+= form_for @message, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
+  = f.govuk_text_field :Fee_scheme,
+  label: { text: 'Fee Scheme' }
+
