@@ -39,6 +39,9 @@ group :development, :test do
   gem 'rubocop', '~> 1.44', require: false
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'govuk_design_system_formbuilder'
+  gem "haml-rails", "~> 2.0"
 end
 
 group :development do
