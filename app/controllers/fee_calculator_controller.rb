@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FeeSchemeController < ApplicationController
+class FeeCalculatorController < ApplicationController
   def index
     @message = 'Fee scheme'
   end
