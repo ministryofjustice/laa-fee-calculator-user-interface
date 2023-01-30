@@ -1,9 +1,11 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.feature "Fee calculator", :type => :feature do
-  scenario "Visit the page" do
-    visit "/"
+require 'rails_helper'
 
-    expect(page).to have_content("LAA Fee Calculator User Interface")
+RSpec.feature 'Fee calculator', type: :feature do
+  scenario 'Visit the page' do
+    visit '/'
+
+    expect(page).to have_content('LAA Fee Calculator User Interface')
   end
 end

@@ -34,7 +34,6 @@ gem 'laa-fee-calculator-client', '~> 1.4.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'govuk_design_system_formbuilder'
   gem 'haml-rails', '~> 2.0'
   gem 'pry'
