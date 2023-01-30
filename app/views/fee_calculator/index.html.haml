@@ -1,0 +1,28 @@
+%h1 LAA Fee Calculator User Interface
+%p A simple Ruby on Rails application that makes a cal the fee calculator API
+%br/
+
+= form_for @message, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
+  = f.govuk_text_field :Fee_scheme,
+  label: { text: 'Fee Scheme' },
+  width: 'one-third'
+
+  = f.govuk_text_field :Scenario,
+  label: { text: 'Scenario' },
+  width: 'one-third'
+
+  = f.govuk_text_field :Advocate,
+  label: { text: 'Advocate type' },
+  width: 'one-third'
+
+  = f.govuk_text_field :Offence,
+  label: { text: 'Offence class' },
+  width: 'one-third'
+
+  = f.govuk_text_field :fee_type,
+  label: { text: 'Fee Type' },
+  width: 'one-third'
+
+  = f.govuk_submit 'Calculate'
+
+
