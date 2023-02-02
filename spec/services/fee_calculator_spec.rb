@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe FeeCalculator do
-  subject(:fee_calculator) { FeeCalculator.new}
+  subject(:fee_calculator) { FeeCalculator.new }
 
   describe '#client' do
     subject { fee_calculator.client }
@@ -12,7 +12,7 @@ RSpec.describe FeeCalculator do
   end
 
   describe '#fee_schemes' do
-    subject { fee_calculator.fee_schemes}
+    subject { fee_calculator.fee_schemes }
     it { is_expected.to be_truthy }
   end
 

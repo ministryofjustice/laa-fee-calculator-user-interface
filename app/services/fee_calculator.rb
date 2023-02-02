@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class FeeCalculator
-
   def fee_schemes
     @fee_schemes ||= client.fee_schemes
   end
@@ -13,5 +12,4 @@ class FeeCalculator
   def client
     @client ||= LAA::FeeCalculator.client
   end
-
 end
