@@ -1,0 +1,5 @@
+= f.govuk_fieldset legend: { text: 'Units' } do
+  -  @fee_scheme.units.map do |unit|
+    = f.govuk_number_field :unit,
+      label: { text: unit.name },
+      width: 'one-third'
