@@ -1,0 +1,43 @@
+%h2= " #{@fee_scheme.description}"
+%br
+= form_with url: index_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
+
+  = f.govuk_collection_select :scenario,
+    @fee_scheme.scenarios.map { |scenario| [scenario.id, scenario.name] },
+    :first,
+    :last,
+    label: { text: 'Scenario' },
+    width: 'one-third'
+  - if @fee_scheme.type == "AGFS"
+    = f.govuk_collection_select :advocate_type,
+      @fee_scheme.advocate_types.map { |advo_type| [advo_type.id, advo_type.name] },
+      :first,
+      :last,
+      label: { text: 'Advocate type' },
+      width: 'one-third'
+
+  = f.govuk_collection_select :offence,
+    @fee_scheme.offence_classes.map { |offence| [offence.id, offence.name] },
+    :first,
+    :last,
+    label: { text: 'Offence class' },
+    width: 'one-third'
+
+  = f.govuk_collection_select :fee_type,
+    @fee_scheme.fee_types.map { |fee_type| [fee_type.id, fee_type.name] },
+    :first,
+    :last,
+    label: { text: 'Fee type' },
+    width: 'one-third'
+
+  - if @fee_scheme.modifier_types.present?
+    = render partial: 'modifier_types', locals: { f: f }
+
+  - if @fee_scheme.units.present?
+    = render partial: 'units', locals: { f: f }
+
+  = f.govuk_submit 'Calculate'
+
+  = link_to "Back", "/"
+
+

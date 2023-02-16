@@ -5,6 +5,10 @@ class FeeCalculatorController < ApplicationController
     @message = 'Fee scheme'
     fee_calculator = FeeCalculator.new
     @fee_schemes = fee_calculator.fee_schemes
-    @fee_scheme = fee_calculator.fee_scheme('AGFS', '2022-09-29')
+  end
+
+  def fee_scheme
+    fee_calculator = FeeCalculator.new
+    @fee_scheme = fee_calculator.fee_scheme(params[:fee_scheme])
   end
 end
