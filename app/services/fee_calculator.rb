@@ -5,8 +5,8 @@ class FeeCalculator
     @fee_schemes ||= client.fee_schemes
   end
 
-  def fee_scheme(type, date)
-    client.fee_schemes(type: type, case_date: date)
+  def fee_scheme(type)
+    client.fee_schemes(type)
   end
 
   def client
