@@ -15,14 +15,16 @@ RSpec.feature 'Fee calculator', type: :feature do
     expect(page).to have_content('AGFS Fee Scheme 9')
   end
 
-  scenario 'Visit the page' do
+  scenario 'show the fee scheme page' do
     visit '/'
+    click_button 'find fee scheme'
 
     expect(page).to have_content('Trial')
   end
 
-  scenario 'Visit the page' do
+  scenario 'select a fee scheme and click button' do
     visit '/'
+    click_button 'find fee scheme'
 
     expect(page).to have_content('QC')
   end

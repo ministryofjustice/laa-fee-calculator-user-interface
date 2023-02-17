@@ -17,6 +17,6 @@ RSpec.describe FeeCalculator do
   end
 
   it 'gives a fee type of given date' do
-    expect(fee_calculator.fee_scheme('AGFS', '2018-01-01').description).to eq 'AGFS Fee Scheme 9'
+    expect(fee_calculator.fee_scheme(1).description).to eq 'AGFS Fee Scheme 9'
   end
 end
