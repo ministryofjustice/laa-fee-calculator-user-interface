@@ -8,6 +8,7 @@
     :last,
     label: { text: 'Scenario' },
     width: 'one-third'
+
   - if @fee_scheme.type == "AGFS"
     = f.govuk_collection_select :advocate_type,
       @fee_scheme.advocate_types.map { |advo_type| [advo_type.id, advo_type.name] },
