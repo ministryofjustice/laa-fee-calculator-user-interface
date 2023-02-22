@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.44', require: false
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'govuk-components'
 end
 
 group :development do

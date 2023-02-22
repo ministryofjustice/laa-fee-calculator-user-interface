@@ -1,7 +1,5 @@
-%h2= " #{@fee_scheme.description}"
-%br
-= form_with url: index_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
-
+= form_with url: amount_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
+  %h2= " #{@fee_scheme.description}"
   = f.govuk_collection_select :scenario,
     @fee_scheme.scenarios.map { |scenario| [scenario.id, scenario.name] },
     :first,
@@ -17,28 +15,26 @@
       label: { text: 'Advocate type' },
       width: 'one-third'
 
-  = f.govuk_collection_select :offence,
+  = f.govuk_collection_select :offence_class,
     @fee_scheme.offence_classes.map { |offence| [offence.id, offence.name] },
     :first,
     :last,
     label: { text: 'Offence class' },
     width: 'one-third'
 
-  = f.govuk_collection_select :fee_type,
-    @fee_scheme.fee_types.map { |fee_type| [fee_type.id, fee_type.name] },
+  = f.govuk_collection_select :fee_type_code,
+    @fee_scheme.fee_types.map { |fee_type| [fee_type.code, fee_type.name] },
     :first,
     :last,
     label: { text: 'Fee type' },
     width: 'one-third'
 
-  - if @fee_scheme.modifier_types.present?
-    = render partial: 'modifier_types', locals: { f: f }
+  = f.hidden_field :fee_scheme,
+    value: @fee_scheme.id
 
   - if @fee_scheme.units.present?
     = render partial: 'units', locals: { f: f }
 
+  = govuk_back_link(href: "/")
+
   = f.govuk_submit 'Calculate'
-
-  = link_to "Back", "/"
-
-
