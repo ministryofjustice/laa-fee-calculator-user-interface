@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'fee_calculator#index'
   get 'index' => 'fee_calculator#index'
   post 'fee_scheme' => 'fee_calculator#fee_scheme'
+  post 'amount' => 'fee_calculator#amount'
   namespace :api do
     get 'fee_scheme/:id', to: 'fee_scheme#show', as: :fee_scheme
   end
