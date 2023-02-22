@@ -17,15 +17,22 @@ RSpec.feature 'Fee calculator', type: :feature do
 
   scenario 'show the fee scheme page' do
     visit '/'
-    click_button 'find fee scheme'
+    click_button 'Continue'
 
     expect(page).to have_content('Trial')
   end
 
-  scenario 'select a fee scheme and click button' do
+  scenario 'select a fee scheme and click button should be on the fee scheme page' do
     visit '/'
-    click_button 'find fee scheme'
+    click_button 'Continue'
 
     expect(page).to have_content('QC')
+  end
+
+  scenario 'show the amount page' do
+    visit '/'
+    click_button 'Continue'
+    click_button 'Calculate'
+    expect(page).to have_content('Amount')
   end
 end

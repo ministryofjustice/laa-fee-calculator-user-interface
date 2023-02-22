@@ -35,6 +35,7 @@
   - if @fee_scheme.units.present?
     = render partial: 'units', locals: { f: f }
 
-  = govuk_back_link(href: "/")
-
   = f.govuk_submit 'Calculate'
+
+  = govuk_button_link_to('Back', '/', { secondary: true })
+
