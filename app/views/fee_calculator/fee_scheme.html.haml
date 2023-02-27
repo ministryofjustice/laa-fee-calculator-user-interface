@@ -1,5 +1,6 @@
 = form_with url: amount_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
-  %h2= " #{@fee_scheme.description}"
+  %h2.govuk-heading
+    = " #{@fee_scheme.description}"
   = f.govuk_collection_select :scenario,
     @fee_scheme.scenarios.map { |scenario| [scenario.id, scenario.name] },
     :first,

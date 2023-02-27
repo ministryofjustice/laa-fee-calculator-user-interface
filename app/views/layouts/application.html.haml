@@ -11,5 +11,6 @@
 
     = govuk_header(service_name: "LAA Fee Calculator User Interface")
 
-  %body
-    = yield
+  %body.govuk-template__body
+    .govuk-width-container
+      = yield
