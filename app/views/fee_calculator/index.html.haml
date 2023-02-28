@@ -1,8 +1,8 @@
-%h1 LAA Fee Calculator User Interface
-%p A simple Ruby on Rails application that makes a cal the fee calculator API
+%h1.govuk-heading LAA Fee Calculator User Interface
+%p A simple Ruby on Rails application that makes a call to the fee calculator API
 %br/
 
-= form_for @message, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
+= form_with url: fee_scheme_path, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f|
   = f.govuk_collection_select :fee_scheme,
     @fee_schemes.map { |fee| [fee.id, fee.description] },
     :first,
@@ -10,34 +10,5 @@
     label: { text: 'Fee Scheme' },
     width: 'one-third'
 
-  = f.govuk_collection_select :scenario,
-    @fee_scheme.scenarios.map { |scenario| [scenario.id, scenario.name] },
-    :first,
-    :last,
-    label: { text: 'Scenario' },
-    width: 'one-third'
-
-  = f.govuk_collection_select :advocate_type,
-    @fee_scheme.advocate_types.map { |advo_type| [advo_type.id, advo_type.name] },
-    :first,
-    :last,
-    label: { text: 'Advocate type' },
-    width: 'one-third'
-
-  = f.govuk_collection_select :offence,
-    @fee_scheme.offence_classes.map { |offence| [offence.id, offence.name] },
-    :first,
-    :last,
-    label: { text: 'Offence class' },
-    width: 'one-third'
-
-  = f.govuk_collection_select :fee_type,
-    @fee_scheme.fee_types.map { |fee_type| [fee_type.id, fee_type.name] },
-    :first,
-    :last,
-    label: { text: 'Fee type' },
-    width: 'one-third'
-
-  = f.govuk_submit 'Calculate'
-
+  = f.govuk_submit 'Continue'
 

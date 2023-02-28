@@ -1,0 +1,9 @@
+- if @fee_scheme.type == "AGFS"
+  = f.govuk_number_field @fee_scheme.units[1].id.downcase,
+    label: { text: @fee_scheme.units[1].name },
+    width: 'one-quarter'
+
+- else
+  = f.govuk_number_field @fee_scheme.units[0].id.downcase,
+    label: { text: @fee_scheme.units[0].name },
+    width: 'one-quarter'

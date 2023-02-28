@@ -8,5 +8,9 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
-  %body
-    = yield
+
+    = govuk_header(service_name: "LAA Fee Calculator User Interface")
+
+  %body.govuk-template__body
+    .govuk-width-container
+      = yield

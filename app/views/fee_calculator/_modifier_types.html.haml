@@ -1,0 +1,5 @@
+= f.govuk_fieldset legend: { text: 'Modifiers' } do
+  -  @fee_scheme.modifier_types.map do |modifier_type|
+    = f.govuk_number_field modifier_type.unit.downcase,
+      label: { text: modifier_type.description },
+      width: 'one-quarter'

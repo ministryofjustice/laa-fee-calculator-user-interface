@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 7.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -33,7 +33,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'laa-fee-calculator-client', '~> 1.4.0'
 
 # Asset Management
-gem "jsbundling-rails"
+gem 'jsbundling-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.44', require: false
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'govuk-components'
 end
 
 group :development do

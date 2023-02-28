@@ -17,6 +17,20 @@ RSpec.describe FeeCalculator do
   end
 
   it 'gives a fee type of given date' do
-    expect(fee_calculator.fee_scheme('AGFS', '2018-01-01').description).to eq 'AGFS Fee Scheme 9'
+    expect(fee_calculator.fee_scheme(1).description).to eq 'AGFS Fee Scheme 9'
+  end
+
+  it 'calculates the fee of given type' do
+    fee_scheme = fee_calculator.fee_scheme(1)
+    amount = fee_scheme.calculate(
+      scenario: 5,
+      advocate_type: 'JRALONE',
+      offence_class: 'E',
+      fee_type_code: 'AGFS_APPEAL_CON',
+      day: 1,
+      number_of_defendants: 1,
+      number_of_cases: 1
+    )
+    expect(amount).to eq 130
   end
 end
