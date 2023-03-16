@@ -1,3 +1,38 @@
+%br
+
+= govuk_table do |table|
+  - table.with_caption(size: 'm', text: 'Summary Page')
+
+  - table.with_head do |head|
+    - head.with_row do |row|
+      - row.with_cell(text: 'Name')
+      - row.with_cell(text: 'Type')
+
+  - table.with_body do |body|
+    - body.with_row do |row|
+      - row.with_cell(text: 'Fee Scheme')
+      - row.with_cell(text: @fee_scheme.description)
+
+    - body.with_row do |row|
+      - row.with_cell(text: 'Scenario')
+      - row.with_cell(text: params['scenario'])
+
+    - body.with_row do |row|
+      - row.with_cell { 'Offence Class' }
+      - row.with_cell { params['offence_class'] }
+    -if params['advocate_type'].present?
+      - body.with_row do |row|
+        - row.with_cell { 'Advocate Type' }
+        - row.with_cell { params['advocate_type'] }
+
+    - body.with_row do |row|
+      - row.with_cell { 'Fee Type' }
+      - row.with_cell { params['fee_type_code'] }
+
+    - body.with_row do |row|
+      - row.with_cell { 'Day' }
+      - row.with_cell { params['day'] }
+
 %h1.govuk-heading-m
   = "Amount: £#{@amount}"
 = govuk_button_link_to 'Back', '/'
