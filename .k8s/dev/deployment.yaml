@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laa-fee-calculator-ui
+  namespace: laa-fee-calculator-ui-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laa-fee-calculator-ui
+  template:
+    metadata:
+      labels:
+        app: laa-fee-calculator-ui
+    spec:
+      containers:
+      - name: laa-fee-calculator-ui-app
+        image: ministryofjustice/cloud-platform-laa-fee-calculator-ui-ruby:1.2
+        ports:
+        - containerPort: 3000
