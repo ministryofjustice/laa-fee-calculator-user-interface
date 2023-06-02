@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: laa-fee-calculator-ui-app
-        image: ministryofjustice/cloud-platform-laa-fee-calculator-ui-ruby:1.2
+        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-clair-taskforce/laa-fee-calculator-ui-dev-ecr:1.6
         ports:
         - containerPort: 3000
