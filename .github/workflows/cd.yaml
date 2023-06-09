@@ -11,7 +11,7 @@ env:
   KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
 
 jobs:
-  main:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,6 +27,13 @@ jobs:
           region: eu-west-2
           local-image: fee-calculator-ui
           image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: Development
+    needs: build-and-publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Update image tag
         env:
           ECR_URL: ${{ secrets.ECR_URL }}
