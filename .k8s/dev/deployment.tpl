@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: laa-fee-calculator-ui-app
-        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-clair-taskforce/laa-fee-calculator-ui-dev-ecr:1.6
+        image: ${ECR_URL}:${IMAGE_TAG}
         ports:
         - containerPort: 3000

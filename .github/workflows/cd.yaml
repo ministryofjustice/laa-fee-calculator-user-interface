@@ -7,6 +7,9 @@ on:
       - main
       - setup_cloud
 
+env:
+  KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -24,3 +27,19 @@ jobs:
           region: eu-west-2
           local-image: fee-calculator-ui
           image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
+      - name: Update image tag
+        env:
+          ECR_URL: ${{ secrets.ECR_URL }}
+        run: export IMAGE_TAG=${{ github.sha }} && cat .k8s/dev/deployment.tpl | envsubst > deployment.yaml
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+        run: |
+          echo "${{ secrets.KUBE_CERT }}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${{ secrets.KUBE_TOKEN }}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${{ secrets.KUBE_NAMESPACE }}
+          kubectl config use-context ${KUBE_CLUSTER}
+      - name: Apply the updated manifest
+        run: |
+          kubectl -n ${KUBE_NAMESPACE} apply -f deployment.yaml
