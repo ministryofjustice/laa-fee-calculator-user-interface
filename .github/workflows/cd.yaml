@@ -15,18 +15,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build
         run: docker build -t fee-calculator-ui .
-      - name: Push to ECR
-        id : ecr
-        uses: jwalton/gh-ecr-push@v1
+      # Assume role in Cloud Platform
+      - uses: aws-actions/configure-aws-credentials@v2
         with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          region: eu-west-2
-          local-image: fee-calculator-ui
-          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
+          role-to-assume: ${{ secrets.DEV_ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.DEV_ECR_REGION }}
+      # Login to container repository
+      - uses: aws-actions/amazon-ecr-login@v1
+        id: login-ecr
+      # Build and push a Docker image to the container repository
+      - run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ vars.DEV_ECR_REPOSITORY }}
+          IMAGE_TAG: ${{ github.sha }}
   deploy-dev:
     runs-on: ubuntu-latest
     environment: Development
