@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.0.0'
 # Use postgres as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -35,8 +35,8 @@ gem 'laa-fee-calculator-client', '~> 1.4.0'
 # Asset Management
 gem 'jsbundling-rails'
 
-gem 'govuk-components'
-gem 'govuk_design_system_formbuilder'
+gem 'govuk-components', '< 5.0'
+gem 'govuk_design_system_formbuilder', '< 5.0'
 gem 'haml-rails', '~> 2.0'
 
 group :development, :test do

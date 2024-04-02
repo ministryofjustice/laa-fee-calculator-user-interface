@@ -350,8 +350,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-  govuk-components
-  govuk_design_system_formbuilder
+  govuk-components (< 5.0)
+  govuk_design_system_formbuilder (< 5.0)
   haml-rails (~> 2.0)
   jbuilder (~> 2.7)
   jsbundling-rails
@@ -360,7 +360,7 @@ DEPENDENCIES
   pry
   puma (~> 5.6)
   rack-mini-profiler (~> 2.0)
-  rails (~> 7.0)
+  rails (~> 7.0.0)
   rspec-rails
   rubocop (~> 1.44)
   rubocop-rails
