@@ -42,7 +42,7 @@ spec:
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           env:
-            - name: API_URL
+            - name: LAA_FEE_CALCULATOR_HOST
               value: {{ .Values.api.url }}
             - name: SECRET_KEY_BASE
               valueFrom:

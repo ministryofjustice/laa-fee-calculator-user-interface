@@ -1,8 +1,8 @@
 # Override values for Development environment
 
 imagePullSecrets: []
-nameOverride: "laa-fee-calculator-ui-app-dev"
-fullnameOverride: "laa-fee-calculator-ui-app-dev"
+nameOverride: laa-fee-calculator-ui-app
+fullnameOverride: laa-fee-calculator-ui-app
 
 replicaCount: 1
 
@@ -20,7 +20,7 @@ ingress:
   namespace: laa-fee-calculator-ui-dev
   className: default
   annotations:
-    external-dns.alpha.kubernetes.io/set-identifier: laa-fee-calculator-ui-dev-green
+    external-dns.alpha.kubernetes.io/set-identifier: laa-fee-calculator-ui-app-laa-fee-calculator-ui-dev-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
   hosts:
     - host: fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
