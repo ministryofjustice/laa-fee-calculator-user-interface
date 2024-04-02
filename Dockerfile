@@ -1,4 +1,4 @@
-FROM ruby:3.0.0-alpine3.13 AS base
+FROM ruby:3.2.2-alpine3.19 AS base
 
 # Stage 1: install gems and npm packages
 
@@ -14,6 +14,7 @@ RUN apk --update-cache upgrade \
                    build-base \
                    gcompat \
                    git \
+                   sqlite \
                    postgresql-dev \
                    python3 \
                    yarn
@@ -32,9 +33,9 @@ RUN yarn install
 COPY . $APP_HOME/
 
 
-RUN SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here \
-RAILS_ENV=production \
-bundle exec rails assets:precompile
+RUN SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here
+#RAILS_ENV=production \
+#bundle exec rails assets:precompile
 
 # Stage 2
 
@@ -55,6 +56,8 @@ RUN apk --update-cache upgrade \
                    gcompat \
                    linux-headers \
                    nodejs \
+                   sqlite \
+                   sqlite-libs \
                    postgresql-client \
                    runit \
                    ttf-freefont
@@ -62,12 +65,13 @@ RUN apk --update-cache upgrade \
 RUN addgroup -g 1000 -S appgroup \
 && adduser -u 1000 -S appuser -G appgroup
 
-COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
+COPY --from=builder --chown=appuser:appgroup /usr/local/bundle/ /usr/local/bundle/
 COPY --from=builder --chown=appuser:appgroup $APP_HOME $APP_HOME
 
 USER 1000
 
 RUN mkdir -p $APP_HOME/tmp/pids
+
 
 #CMD "bundle exec rails db:migrate"
 #CMD "bundle exec rails server"
