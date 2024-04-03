@@ -33,8 +33,6 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
-    outputs:
-      ecr-registry: ${{ steps.login-ecr.outputs.registry }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -62,9 +60,23 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     environment: Development
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Assume Cloud Platform role
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.ECR_REGION }}
+
+      - name: Login to Container Repository
+        uses: aws-actions/amazon-ecr-login@v2
+        id: login-ecr
 
       - name: Authenticate to cluster
         env:
@@ -81,14 +93,12 @@ jobs:
         uses: azure/setup-helm@v4
 
       - name: Deploy to Dev
-        env:
-          ECR_REGISTRY: ${{ needs.build-and-push.outputs.ecr-registry }}
         run: |
           helm upgrade laa-fee-calculator-ui-dev ./laa-fee-calculator-user-interface/. \
-              --install --wait --force \
+              --install --wait --force --debug \
               --namespace=${{ secrets.KUBE_NAMESPACE }} \
               --values ./laa-fee-calculator-user-interface/values-dev.yaml \
-              --set image.registry="${ecr-registry}" \
+              --set image.registry="${{ steps.login-ecr.outputs.registry }}" \
               --set image.repository="${{ vars.ECR_REPOSITORY }}" \
               --set image.tag="${{ github.event.pull_request.head.sha }}" \
               --atomic
