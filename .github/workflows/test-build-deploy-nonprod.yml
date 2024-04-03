@@ -13,13 +13,16 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2.2'
+          ruby-version: '3.0.0'
           bundler-cache: true
 
       - name: Install Node
         uses: actions/setup-node@v4
         with:
             node-version: 14.17.0
+
+      - run: bundle clean --force
+      - run: gem update --system
 
       - name: Prepare Rails
         run: bundle exec rails assets:precompile

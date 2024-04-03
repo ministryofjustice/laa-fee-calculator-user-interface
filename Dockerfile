@@ -1,4 +1,5 @@
-FROM ruby:3.2.2-alpine3.18 AS base
+
+FROM ruby:3.0.0-alpine3.13 AS base
 
 # Stage 1: install gems and npm packages
 
@@ -33,8 +34,7 @@ RUN yarn install
 
 COPY . $APP_HOME/
 
-#ToDo: Something is broken with asset precompiling in this repo. When it is fixed, this needs uncommenting
-#RUN bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompile
 
 # Stage 2
 

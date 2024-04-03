@@ -8,12 +8,12 @@ replicaCount: 1
 
 api:
   version: "Development"
-  url: "https://dev.laa-fee-calculator.service.justice.gov.uk/api/v1/fee-schemes"
+  url: "https://dev.laa-fee-calculator.service.justice.gov.uk/api/v1"
 
 service:
   type: ClusterIP
   port: 80
-  internalPort: 8080
+  internalPort: 3000
 
 ingress:
   enabled: true
@@ -23,7 +23,7 @@ ingress:
     external-dns.alpha.kubernetes.io/set-identifier: laa-fee-calculator-ui-app-laa-fee-calculator-ui-dev-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
   hosts:
-    - host: fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
+    - host: laa-fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -34,7 +34,7 @@ ingress:
               number: 8080
   tls:
     - hosts:
-        - fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
+        - laa-fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
 
 resources:
   limits:

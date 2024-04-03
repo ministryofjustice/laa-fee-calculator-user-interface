@@ -17,7 +17,7 @@
       width: 'one-third'
 
   = f.govuk_collection_select :offence_class,
-    @fee_scheme.offence_classes.map { |offence| [offence.id, offence.name] },
+    @fee_scheme.offence_classes.map{ |offence| [offence.id, offence.name] },
     :first,
     :last,
     label: { text: 'Offence class' },

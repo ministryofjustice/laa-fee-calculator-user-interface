@@ -30,6 +30,11 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
   config.assets.css_compressor = nil
 
+  # set all encoding to utf-8
+  Encoding.default_external = "UTF-8"
+  Encoding.default_internal = "UTF-8"
+  config.encoding = "utf-8"
+
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
