@@ -78,7 +78,7 @@ jobs:
           kubectl config use-context ${KUBE_CLUSTER}
 
       - name: Install Helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@v4
 
       - name: Deploy to Dev
         env:
