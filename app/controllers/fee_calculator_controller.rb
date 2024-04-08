@@ -29,6 +29,7 @@ class FeeCalculatorController < ApplicationController
   def amount_params
     params.permit(
       :fee_scheme,
+      :authenticity_token,
       :scenario,
       :offence_class,
       :advocate_type,

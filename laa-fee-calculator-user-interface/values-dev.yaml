@@ -1,0 +1,52 @@
+# Override values for Development environment
+
+imagePullSecrets: []
+nameOverride: laa-fee-calculator-ui-app
+fullnameOverride: laa-fee-calculator-ui-app
+
+replicaCount: 1
+
+api:
+  version: "Development"
+  url: "https://dev.laa-fee-calculator.service.justice.gov.uk/api/v1"
+
+service:
+  type: ClusterIP
+  port: 80
+  internalPort: 3000
+
+ingress:
+  enabled: true
+  namespace: laa-fee-calculator-ui-dev
+  className: default
+  annotations:
+    external-dns.alpha.kubernetes.io/set-identifier: laa-fee-calculator-ui-app-laa-fee-calculator-ui-dev-green
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
+  hosts:
+    - host: laa-fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+          service:
+            name: laa-fee-calculator-ui-dev
+            port:
+              number: 8080
+  tls:
+    - hosts:
+        - laa-fee-calculator-ui-dev.apps.live.cloud-platform.service.justice.gov.uk
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 500Mi
+  requests:
+    cpu: 10m
+    memory: 500Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80

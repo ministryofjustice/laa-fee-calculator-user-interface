@@ -6,9 +6,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.0'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem 'rails', '~> 7.0.0'
+# Use postgres as the database for Active Record
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
@@ -30,13 +30,14 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'laa-fee-calculator-client', '~> 1.4.0'
+gem 'laa-fee-calculator-client', '~> 2.0'
+gem 'uri', '~> 0.13.0'
 
 # Asset Management
 gem 'jsbundling-rails'
 
-gem 'govuk-components'
-gem 'govuk_design_system_formbuilder'
+gem 'govuk-components', '< 5.0'
+gem 'govuk_design_system_formbuilder', '< 5.0'
 gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
@@ -69,4 +70,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data'
