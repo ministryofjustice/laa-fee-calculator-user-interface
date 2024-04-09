@@ -7,9 +7,6 @@ on:
       values:
         type: string
         required: true
-      image-tag:
-        type: string
-        required: true
 
 jobs:
   deploy:
@@ -55,5 +52,5 @@ jobs:
               --values ./laa-fee-calculator-user-interface/${{ inputs.values }} \
               --set image.registry="${{ steps.login-ecr.outputs.registry }}" \
               --set image.repository="${{ vars.ECR_REPOSITORY }}" \
-              --set image.tag=$GITHUB_SHA \
+              --set image.tag="${{ github.sha }}" \
               --atomic
