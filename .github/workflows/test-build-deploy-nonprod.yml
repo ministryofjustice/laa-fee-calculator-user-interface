@@ -11,6 +11,8 @@ jobs:
     needs: test
     uses: ./.github/workflows/build-and-push.yml
     secrets: inherit
+    with:
+      image-tag: ${{ github.event.pull_request.head.sha}}
 
   development:
     needs: build-and-push
@@ -19,6 +21,7 @@ jobs:
     with:
       environment: Development
       values: values-dev.yaml
+      image-tag: ${{ github.event.pull_request.head.sha}}
 
   staging:
     needs: build-and-push
@@ -27,3 +30,4 @@ jobs:
     with:
       environment: Staging
       values: values-staging.yaml
+      image-tag: ${{ github.event.pull_request.head.sha}}
