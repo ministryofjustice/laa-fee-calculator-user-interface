@@ -7,6 +7,9 @@ on:
       values:
         type: string
         required: true
+      image-tag:
+        type: string
+        required: true
 
 jobs:
   deploy:
