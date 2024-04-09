@@ -1,0 +1,23 @@
+name: test-build-deploy-production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+
+  build-and-push:
+    needs: test
+    uses: ./.github/workflows/build-and-push.yml
+    secrets: inherit
+
+  development:
+    needs: build-and-push
+    uses: ./.github/workflows/deploy-to-environment.yml
+    secrets: inherit
+    with:
+      environment: Production
+      values: values-production.yaml
