@@ -1,7 +1,8 @@
 on:
   workflow_call:
-    secrets:
-      ECR_ROLE_TO_ASSUME:
+    inputs:
+      image-tag:
+        type: string
         required: true
 
 jobs:
@@ -31,4 +32,4 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.event.pull_request.head.sha }}
+          IMAGE_TAG: ${{ inputs.image-tag }}

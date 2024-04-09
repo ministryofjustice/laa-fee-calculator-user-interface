@@ -29,10 +29,10 @@ RSpec.feature 'Fee calculator', type: :feature do
     expect(page).to have_content('QC')
   end
 
-  # scenario 'show the amount page' do
-  #   visit '/'
-  #   click_button 'Continue'
-  #   click_button 'Calculate'
-  #   expect(page).to have_content('Amount')
-  # end
+  scenario 'show the amount page' do
+    visit '/'
+    click_button 'Continue'
+    click_button 'Calculate'
+    expect(page).to have_content('Amount')
+  end
 end
