@@ -13,8 +13,6 @@ jobs:
     needs: test
     uses: ./.github/workflows/build-and-push.yml
     secrets: inherit
-    with:
-      image-tag: ${{ github.event.push.head.sha}}
 
   development:
     needs: build-and-push
