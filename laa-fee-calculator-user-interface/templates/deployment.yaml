@@ -39,6 +39,8 @@ spec:
           env:
             - name: LAA_FEE_CALCULATOR_HOST
               value: {{ .Values.api.url }}
+            - name: RAILS_SERVE_STATIC_FILES
+              value: {{ .Values.railsSettings.serveStaticFiles }}
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:

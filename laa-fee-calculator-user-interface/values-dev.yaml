@@ -10,6 +10,9 @@ api:
   version: "Development"
   url: "https://dev.laa-fee-calculator.service.justice.gov.uk/api/v1"
 
+railsSettings:
+  serveStaticFiles: only-presence-required-to-enable
+
 service:
   type: ClusterIP
   port: 80
